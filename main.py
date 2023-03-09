@@ -8,6 +8,14 @@ Original file is located at
 """
 
 import numpy as np
+import sys
+import os
+import Context
+import scipy
+import matplotlib.pyplot as plt
+
+py_file_location = "/content/drive/MyDrive/Colab Notebooks"
+sys.path.append(os.path.abspath(py_file_location))
 
 flist = ["/content/drive/MyDrive/Colab Notebooks/data/set1.train.txt",
          "/content/drive/MyDrive/Colab Notebooks/data/set1.valid.txt",
@@ -146,12 +154,7 @@ def preprocess():
 
     return (docsPerQuery, relevances, features)
 
-import sys
-import os
 
-py_file_location = "/content/drive/MyDrive/Colab Notebooks"
-sys.path.append(os.path.abspath(py_file_location))
-import Context
 class YahooContextIterator(object):
     def __init__(self, K=6, L=2, train=True, loop=False):
         ## Ignore train flag we don't have test data
@@ -199,7 +202,6 @@ print(x.get_name())
 print(x.get_K())
 print(r)
 
-import scipy
 class OFUL(object):
     """
     Implementation of OFUL
@@ -266,7 +268,6 @@ class OFUL(object):
       l2 = np.cumsum(self.opt_reward)            
       self.cum_regret = abs(l2-l1)
 
-import matplotlib.pyplot as plt
 oful = OFUL()
 oful.play(yahoo)
 plt.plot(oful.cum_regret, linewidth = 3)
